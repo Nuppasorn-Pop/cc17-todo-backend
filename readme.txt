@@ -1,0 +1,4 @@
+Env guid
+PORT
+DATABASE_URL
+JWT_SECRET
