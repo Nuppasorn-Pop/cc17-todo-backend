@@ -5,12 +5,14 @@ const todosRouter = require("./routes/todos-route");
 // require = ไป read express FN ที่ libary node_module และสั่งให้ FN ทำงานใน server.js เลย
 const notFound = require("./middlewares/not-found");
 const errorMiddleware = require("./middlewares/error-middleware");
+const authenticate = require("./middlewares/authenticate");
 
 app.use(express.json()); // ==> ทำให้เกิด req.body
 // พวก PostAPI, Browser มันจะส่ง requst เป็น string json (object)
 
 app.use("/auth", authRouter);
-app.use("/todos", todosRouter);
+app.use("/todos", authenticate, todosRouter);
+// app.use("/todos",(req,res,next)=>{next{}} ,todosRouter);
 
 app.use(notFound);
 app.use(errorMiddleware);
