@@ -10,7 +10,8 @@ module.exports = async (req, res, next) => {
     }
 
     // 2. chcek req.headers -- have Bearer value
-    if (!authorization.startsWith("Bearer ")) {
+    // if (!authorization.startsWith("Bearer "))
+    if (!/^Bearer /.test(authorization)) {
       throw customError("UnAuthorization", 401);
     }
 
